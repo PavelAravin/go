@@ -10,8 +10,8 @@ CREATE TABLE posts (
     author_id INTEGER REFERENCES authors(id) NOT NULL,
     title TEXT  NOT NULL,
     content TEXT NOT NULL,
-    created_at BIGINT NOT NULL
+    created_at BIGINT NOT NULL DEFAULT extract(epoch from now())
 );
 
-INSERT INTO authors (id, name) VALUES (0, 'Дмитрий');
-INSERT INTO posts (id, author_id, title, content, created_at) VALUES (0, 0, 'Статья', 'Содержание статьи', 0);
+INSERT INTO authors (name) VALUES ('Дмитрий');
+INSERT INTO posts (author_id, title, content, created_at) VALUES (0, 'Статья', 'Содержание статьи', extract(epoch from now()));
